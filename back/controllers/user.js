@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 
 exports.signup = (req, res) => {
@@ -18,7 +18,7 @@ exports.signup = (req, res) => {
     .catch((error) => res.status(500).json({message: error}));
 };
 
-/*exports.login = (req, res, next) => {
+exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
     .then(user => {
         if(!user) {
@@ -31,4 +31,4 @@ exports.signup = (req, res) => {
         }
     })
     .catch()
-}*/
+}
