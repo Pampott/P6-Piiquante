@@ -24,11 +24,18 @@ exports.login = (req, res, next) => {
         if(!user) {
             return res.status(401).json( {message: "Identifiants incorrects"} )
         } else {
-            return res.status(200).json({
-                userId: user._id,
-                token: user._id + "TOKEN",
+            bcrypt.compare(req.body.password, user.password)
+            .then((valid) => {
+                if(!valid){
+                    return res.status(401).json({message: "Identifiants incorrects"})
+                } else {
+                    return res.status(200).json({
+                        userId: user._id,
+                        token: jwt.sign({id: user._id}, "TOKEN", {expiresIn: "24h"})
+                    });
+                };
             })
         }
     })
-    .catch()
+    .catch(error => res.status(500).json({error}));
 }
