@@ -14,7 +14,9 @@ app.use(helmet());
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://Pampott:Mimitoss@cluster0.qzfen.mongodb.net/?retryWrites=true&w=majority",
-{ useNewUrlParser: true, useUnifiedTopology: true })
+{ useNewUrlParser: true, 
+  useUnifiedTopology: true 
+})
 .then(() => console.log("MongoDB connecté !"))
 .catch(() => console.log(("Connexion à MongoDB échouée. ")));
 
