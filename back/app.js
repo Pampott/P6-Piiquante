@@ -4,9 +4,13 @@ const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 const path = require('path');
 const cors = require('cors');
-
+const helmet = require('helmet');
+const dotenv = require('dotenv').config;
 
 const app = express();
+
+app.use(helmet());
+
 app.use(express.json());
 
 mongoose.connect("mongodb+srv://Pampott:Mimitoss@cluster0.qzfen.mongodb.net/?retryWrites=true&w=majority",
