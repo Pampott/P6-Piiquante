@@ -5,15 +5,17 @@ const sauceRoutes = require('./routes/sauce');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
-//const dotenv = require('dotenv').config;
+const dotenv = require('dotenv').config;
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "same-site"}
+}));
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://Pampott:Mimitoss@cluster0.qzfen.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://" + process.env.USER_MONGODB +"@cluster0.qzfen.mongodb.net/?retryWrites=true&w=majority",
 { useNewUrlParser: true, 
   useUnifiedTopology: true 
 })
