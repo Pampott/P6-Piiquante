@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({origin: process.env.PORT || 3000}));
+app.use(cors());
 
 app.use('/api/auth', userRoutes);
 
